@@ -50,6 +50,8 @@
 }
 </script>
 
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 
@@ -1486,9 +1488,9 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── EmailJS init (replace with your real Public Key after setup)
   // Sign up at emailjs.com → create a service (Gmail) → create an email template → copy IDs below
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
-  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'abcDEFghiJKL'
+  const EMAILJS_SERVICE_ID  = 'service_xmbt8xo';
+  const EMAILJS_TEMPLATE_ID = 'template_rx4mys9';
+  const EMAILJS_PUBLIC_KEY  = 'BvPkKvX0HyODOt58K';
 
   if (typeof emailjs !== 'undefined') {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -1514,12 +1516,10 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   }
 
-  // Load saved preference or system preference
+  // Load saved preference only — default is always light
   (function () {
     const saved = localStorage.getItem('np93-theme');
-    if (saved) {
-      applyTheme(saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (saved === 'dark') {
       applyTheme('dark');
     }
   })();
