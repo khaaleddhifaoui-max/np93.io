@@ -1599,7 +1599,6 @@
     const name    = document.getElementById('f-name').value.trim();
     const email   = document.getElementById('f-email').value.trim();
     const company = document.getElementById('f-company').value.trim();
-    const budget  = document.getElementById('f-budget').value;
     const message = document.getElementById('f-message').value.trim();
 
     if (!name || !email || !message) {
@@ -1612,24 +1611,12 @@
     btn.innerHTML = '<span class="spinner"></span> Sending...';
 
     try {
-      if (typeof emailjs !== 'undefined' && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID') {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          from_name:    name,
-          from_email:   email,
-          company:      company || '—',
-          budget:       budget  || '—',
-          message:      message,
-          to_email:     'hello@np93.io',
-        });
-      } else {
-        // Fallback: open default mail client
-        const subject = encodeURIComponent(`[np93.io Contact] Message from ${name}`);
-        const body = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\nCompany: ${company || '—'}\nBudget: ${budget || '—'}\n\nMessage:\n${message}`
-        );
-        window.location.href = `mailto:hello@np93.io?subject=${subject}&body=${body}`;
-        await new Promise(r => setTimeout(r, 800));
-      }
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name:  name,
+        from_email: email,
+        company:    company || '—',
+        message:    message,
+      });
 
       document.getElementById('contact-form-wrap').style.display = 'none';
       document.getElementById('form-success').style.display = 'flex';
